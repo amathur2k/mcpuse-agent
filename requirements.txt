@@ -1,3 +1,4 @@
 mcp-use
 langchain-openai
+langchain-anthropic
 python-dotenv

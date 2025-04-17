@@ -3,23 +3,23 @@ import os
 import json
 import time
 from dotenv import load_dotenv
-from langchain_openai import ChatOpenAI
+from langchain_anthropic import ChatAnthropic
 from mcp_use import MCPAgent, MCPClient
 
 async def main():
     # Load environment variables
     load_dotenv()
     
-    # Check if API key is set
-    if not os.getenv("OPENAI_API_KEY") or os.getenv("OPENAI_API_KEY") == "your_openai_api_key_here":
-        print("⚠️ Please set your OPENAI_API_KEY in the .env file")
+    # Check if Anthropic API key is set
+    if not os.getenv("ANTHROPIC_API_KEY") or os.getenv("ANTHROPIC_API_KEY") == "your_anthropic_api_key_here":
+        print("⚠️ Please set your ANTHROPIC_API_KEY in the .env file")
         return
     
     # Create MCPClient from configuration file
     client = MCPClient.from_config_file("mcp_config.json")
     
     # Create LLM
-    llm = ChatOpenAI(model="gpt-4.1")
+    llm = ChatAnthropic(model="claude-3-7-sonnet")
     
     # Create agent with the client
     agent = MCPAgent(
